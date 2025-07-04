@@ -1,0 +1,56 @@
+﻿@model MVC.Models.Tarefa
+
+@{
+    ViewData["Title"] = "Detalhes da Tarefa";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm rounded-2xl">
+
+                <!-- Cabeçalho -->
+                <div class="card-header bg-info text-white d-flex align-items-center">
+                    <i class="bi bi-list-task fs-4 me-2"></i>
+                    <h2 class="mb-0">Detalhes da Tarefa</h2>
+                </div>
+
+                <div class="card-body">
+                    <!-- Detalhes da Tarefa -->
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4">Título</dt>
+                        <dd class="col-sm-8">@Model.Titulo</dd>
+
+                        <dt class="col-sm-4">Descrição</dt>
+                        <dd class="col-sm-8">@Model.Descricao</dd>
+
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">@Model.StatusTarefa</dd>
+
+                        <dt class="col-sm-4">Projeto</dt>
+                        <dd class="col-sm-8">
+                            @Model.Projeto?.Nome ?? "—"
+                        </dd>
+                    </dl>
+
+                    <!-- Ações -->
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Edit" asp-route-id="@Model.TarefaId" class="btn btn-primary">
+                            <i class="bi bi-pencil-fill me-1"></i> Editar
+                        </a>
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left-circle me-1"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

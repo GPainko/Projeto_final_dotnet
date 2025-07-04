@@ -1,0 +1,66 @@
+﻿@model MVC.Models.Projeto
+
+@{
+    ViewData["Title"] = "Excluir Projeto";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-danger shadow-sm rounded-2xl">
+
+                <!-- Cabeçalho de aviso -->
+                <div class="card-header bg-danger text-white d-flex align-items-center">
+                    <i class="bi bi-exclamation-triangle-fill fs-4 me-2"></i>
+                    <h2 class="mb-0">Excluir Projeto</h2>
+                </div>
+
+                <div class="card-body">
+                    <p class="lead">Tem certeza que deseja excluir este projeto?</p>
+
+                    <!-- Detalhes do Projeto -->
+                    <dl class="row mb-4">
+                        <dt class="col-sm-3">Nome</dt>
+                        <dd class="col-sm-9">@Model.Nome</dd>
+
+                        <dt class="col-sm-3">Cliente</dt>
+                        <dd class="col-sm-9">@Model.Cliente</dd>
+
+                        <dt class="col-sm-3">Data Início</dt>
+                        <dd class="col-sm-9">
+                            @Model.DataInicio.ToString("dd/MM/yyyy")
+                        </dd>
+
+                        <dt class="col-sm-3">Data Término</dt>
+                        <dd class="col-sm-9">
+                            @(Model.DataFim.HasValue
+                                                        ? Model.DataFim.Value.ToString("dd/MM/yyyy")
+                                                        : "—")
+                        </dd>
+                    </dl>
+
+                    <!-- Formulário de confirmação -->
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="ProjetoId" />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash-fill me-1"></i> Excluir
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

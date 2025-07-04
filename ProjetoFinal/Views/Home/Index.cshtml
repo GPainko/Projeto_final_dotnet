@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Estilos inline -->
+<style>
+    html, body {
+        margin: 0;
+        height: 100%;
+    }
+
+    .stripes {
+        display: flex;
+        width: 100%;
+        height: 100vh; /* ocupa toda a altura da janela */
+    }
+
+    .stripe {
+        flex: 1; /* 3 faixas de mesma largura */
+    }
+
+        .stripe.blue {
+            background-color: #007bff;
+        }
+
+        .stripe.white {
+            background-color: #ffffff;
+        }
+
+        .stripe.black {
+            background-color: #000000;
+        }
+</style>
+
+<div class="stripes">
+    <div class="stripe blue"></div>
+    <div class="stripe white"></div>
+    <div class="stripe black"></div>
+</div>
+,
+0

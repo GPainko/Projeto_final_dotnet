@@ -1,0 +1,62 @@
+﻿@model MVC.Models.Tarefa
+
+@{
+    ViewData["Title"] = "Excluir Tarefa";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-danger shadow-sm rounded-2xl">
+
+                <!-- Cabeçalho de aviso -->
+                <div class="card-header bg-danger text-white d-flex align-items-center">
+                    <i class="bi bi-exclamation-triangle-fill fs-4 me-2"></i>
+                    <h2 class="mb-0">Excluir Tarefa</h2>
+                </div>
+
+                <div class="card-body">
+                    <p class="lead">Tem certeza que deseja excluir esta tarefa?</p>
+
+                    <!-- Detalhes da Tarefa -->
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4">Título</dt>
+                        <dd class="col-sm-8">@Model.Titulo</dd>
+
+                        <dt class="col-sm-4">Descrição</dt>
+                        <dd class="col-sm-8">@Model.Descricao</dd>
+
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">@Model.StatusTarefa</dd>
+
+                        <dt class="col-sm-4">Projeto</dt>
+                        <dd class="col-sm-8">
+                            @Model.Projeto?.Nome ?? "—"
+                        </dd>
+                    </dl>
+
+                    <!-- Formulário de confirmação -->
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="TarefaId" />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash-fill me-1"></i> Excluir
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
